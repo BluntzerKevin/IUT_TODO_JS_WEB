@@ -1,0 +1,64 @@
+<html>
+<head>
+	<title>Liste</title>
+</head>
+<body>
+<form action ="#">
+	<input type="text" id="word"/> 
+	<button onclick="add_word()" id="word_input">Add</button>
+</form>
+
+<ul id="liste">
+	
+</ul>
+
+<script>
+	var inc=0;
+	var verif;
+	
+	for(var i = -1; i <= sessionStorage.getItem("nombre");i++){
+			var newli=document.createElement('li');
+			newli.innerHTML=sessionStorage.getItem("cookie"+i);
+			document.getElementById('liste').appendChild(newli);
+			verif = i;
+	}
+		
+	function add_word(){
+		var d = new Date();
+		var dat = d.toLocaleDateString();
+		
+		if (verif!=0){
+			sessionStorage.setItem("nombre",verif);
+			
+			var mot = document.getElementById('word').value;
+			inc =verif + 1;
+			
+			sessionStorage.setItem("cookie"+inc,mot + " " + dat);
+			sessionStorage.setItem("nombre",inc);
+			
+			var newli=document.createElement('li');
+			
+			newli.innerHTML=sessionStorage.getItem("cookie"+inc);
+			
+			document.getElementById('liste').appendChild(newli);
+		}
+		
+		else{
+			var mot = document.getElementById('word').value;
+			inc =inc + 1;
+			
+			sessionStorage.setItem("cookie"+inc,mot);
+			sessionStorage.setItem("nombre",inc);
+			
+			var newli=document.createElement('li');
+			
+			newli.innerHTML=sessionStorage.getItem("cookie"+inc);
+			
+			document.getElementById('liste').appendChild(newli);
+		}
+		
+	}
+</script>
+</body>
+<html>
+
